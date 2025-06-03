@@ -6,6 +6,8 @@ sha1: 5ff465afaabcbf0150d1a3ab2c2e74f3a4426467
 
 sha256: ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa
 
+Sample: [WannaCry 2.0](https://matx1n3.github.io/wanna/wannacry2.0.zip) contraseña: infected
+
 ## Análisis estatico
 
 ### FLOSS
@@ -168,7 +170,7 @@ Seria interesante desencriptar t.wnry, pero no cuento con el tiempo necesario pa
 
 El análisis que he hecho sobre el binario es mucho mas extenso, pero sinceramente, no se como explicar aqui lo poco que he entendido. Añado el archivo sobre el que he estado trabajando para que puedas explorarlo. He añadido nombres a muchas funciones y también comentarios en varias partes del código.
 
-[WannaCry2.0.i64](https://www.example.com)
+[WannaCry2.0.i64](https://matx1n3.github.io/wanna/wannaCry2.0.i64)
 
 Doy por concluido el análisis estatico.
 
@@ -183,7 +185,15 @@ Hago un "shot" del registro usando la herramienta SnapShot
 
 Ejecuto el malware grabando la pantalla con Process Hacker 2 abierto para poder ver que procesos lanza el malware.
 
-Y hago otro shot del registro. Uso la propia herramienta para compararlos y obtengo:
+Y hago otro shot del registro. Uso la propia herramienta para compararlos. El malware añade 81865 registros y elimina 1. El dif se puede ver [aqui](https://matx1n3.github.io/wanna/dif.txt).
+
+Me habria gustado dedicar más tiempo al análisis dinámico pero no ha sido posible. (Analizar el trafico, ver que procesos lanza, ...)
+
+Para finalizar, una imagen de WannaCry2.0 en acción.
+
+![image caption](11.png)
+
+
 
 
 
